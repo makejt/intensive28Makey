@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 @WebServlet("/manager")
@@ -15,7 +16,7 @@ public class ManagerServlet extends HttpServlet {
     private ManagerServiceImpl service = new ManagerServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Set<Manager> managers =service.showAllManagers();
+        List<Manager> managers =service.showAllManagers();
         resp.setContentType("application/json;charset=UTF-8");
         resp.getWriter().print(managers);
         req.getRequestDispatcher("index.html");
@@ -27,7 +28,7 @@ public class ManagerServlet extends HttpServlet {
 
         manager.setName(req.getParameter("name").trim());
         manager.setLastName(req.getParameter("lastname").trim());
-        manager.setTelephone(Integer.parseInt(req.getParameter("telephone")));
+        manager.setTelephone(req.getParameter("telephone"));
         manager.setEmail(req.getParameter("email").trim().toLowerCase());
         resp.setContentType("application/json;charset=UTF-8");
 

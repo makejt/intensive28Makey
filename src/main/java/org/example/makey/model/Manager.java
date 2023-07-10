@@ -1,18 +1,29 @@
 package org.example.makey.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.persistence.*;
+
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "manager")
 public class Manager {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "manager_id")
     private int id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "last_name")
     private String lastName;
-    private int telephone;
+    @Column(name = "telephone")
+    private String telephone;
+    @Column(name = "email")
     private String email;
-    public Manager(String name, String lastName, int telephone, String email) {
+    @Embedded
+    private History history;
+    public Manager(String name, String lastName, String telephone, String email) {
         this.name = name;
         this.lastName = lastName;
         this.telephone = telephone;

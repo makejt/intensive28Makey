@@ -3,13 +3,14 @@ package org.example.makey.service;
 import org.example.makey.dao.ProductDAO;
 import org.example.makey.model.Product;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 public class ProductServiceImpl implements ProductService{
     private ProductDAO dao = new ProductDAO();
     @Override
-    public Set<Product> showAllProducts() {
+    public List<Product> showAllProducts() {
         return dao.getAll();
     }
 
