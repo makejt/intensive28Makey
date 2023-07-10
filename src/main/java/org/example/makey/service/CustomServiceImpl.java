@@ -2,6 +2,8 @@ package org.example.makey.service;
 
 import org.example.makey.dao.CustomerDAO;
 import org.example.makey.model.Customer;
+
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -9,7 +11,7 @@ public class CustomServiceImpl implements CustomerService{
 
     private CustomerDAO dao = new CustomerDAO();
     @Override
-    public Set<Customer> showAllCustomers() {
+    public List<Customer> showAllCustomers() {
         return dao.getAll();
     }
 

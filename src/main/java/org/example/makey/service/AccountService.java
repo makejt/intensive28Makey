@@ -2,11 +2,12 @@ package org.example.makey.service;
 
 import org.example.makey.model.Account;
 
+import java.util.List;
 import java.util.Set;
 
 public interface AccountService {
 
-    Set<Account> showAllAccounts();
+    List<Account> showAllAccounts();
 
     Account getAccountById(Integer id);
 

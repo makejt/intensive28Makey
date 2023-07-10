@@ -2,10 +2,12 @@ package org.example.makey.service;
 
 import org.example.makey.model.Customer;
 
+import java.util.List;
 import java.util.Set;
 
 public interface CustomerService {
-    Set<Customer> showAllCustomers();
+
+    List<Customer> showAllCustomers();
 
     Customer getCustomerById(Integer id);
 

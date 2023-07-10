@@ -11,7 +11,7 @@ public class ManagerServiceImpl implements ManagerService{
     private ManagerDAO dao = new ManagerDAO();
 
     @Override
-    public Set<Manager> showAllManagers() {
+    public List<Manager> showAllManagers() {
        return dao.getAll();
     }
     @Override

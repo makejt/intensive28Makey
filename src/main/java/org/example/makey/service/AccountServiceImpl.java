@@ -2,14 +2,15 @@ package org.example.makey.service;
 
 import org.example.makey.dao.AccountDAO;
 import org.example.makey.model.Account;
+
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public class AccountServiceImpl implements AccountService{
 
     private AccountDAO dao = new AccountDAO();
     @Override
-    public Set<Account> showAllAccounts() {
+    public List<Account> showAllAccounts() {
         return dao.getAll();
     }
 

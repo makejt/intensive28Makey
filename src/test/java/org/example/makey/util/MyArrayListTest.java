@@ -1,14 +1,20 @@
 package org.example.makey.util;
 
+import org.apache.logging.log4j.LogManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import org.apache.logging.log4j.Logger;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyArrayListTest {
+
+    private static final Logger logger = LogManager.getLogger();
+
     private static final MyArrayList<Integer> myList = new MyArrayList<>();
     @BeforeAll
     static void create() {

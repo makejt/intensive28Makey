@@ -2,10 +2,11 @@ package org.example.makey.service;
 
 import org.example.makey.model.Product;
 
+import java.util.List;
 import java.util.Set;
 
 public interface ProductService {
-    Set<Product> showAllProducts();
+    List<Product> showAllProducts();
 
     Product getProductById(Integer id);
 

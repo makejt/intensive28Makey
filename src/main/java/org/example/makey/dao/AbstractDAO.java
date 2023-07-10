@@ -1,10 +1,10 @@
 package org.example.makey.dao;
 
-import java.util.Set;
+import java.util.List;
 public interface AbstractDAO<T> {
-    boolean add(T t);
-    boolean update(T t);
-    boolean delete(int id);
+    void add(T t);
+    void update(T t);
+    void delete(int id);
     T getById(int id);
-    Set<T> getAll();
+    List<T> getAll();
 }
