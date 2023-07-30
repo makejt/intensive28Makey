@@ -1,26 +1,32 @@
 package org.example.makey.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.*;
+
 import java.util.List;
-
-@NamedEntityGraph(
-        name = "WithManagerAndAccount",
-        attributeNodes = {
-                @NamedAttributeNode("manager"),
-                @NamedAttributeNode("accounts")
-        }
-)
-
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Entity
 @Table(name = "customer")
+//@NamedEntityGraph(
+//        name = "WithProductsAndAccounts",
+//        attributeNodes = {
+//                @NamedAttributeNode("products"),
+//                @NamedAttributeNode("accounts")
+//        }
+//)
+//@NamedEntityGraph(
+//        name = "WithAccounts",
+//        attributeNodes = {
+//
+//                @NamedAttributeNode("accounts")
+//        }
+//)
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,10 +39,10 @@ public class Customer {
     @Column(name = "INN")
     private int INN;
 
-    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "manager_id")
     private Manager manager;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(
             name = "customer_product",
             joinColumns = {@JoinColumn(name = "customer_id", referencedColumnName = "id")},
@@ -45,7 +51,8 @@ public class Customer {
     private List<Product> products;
     @Embedded
     private History history;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", orphanRemoval = true)
+    @JsonIgnore
     private List<Account> accounts;
 
     public Customer(String brandName, String legalForm, int INN) {
