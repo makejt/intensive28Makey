@@ -1,9 +1,10 @@
 package org.example.makey.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Embeddable
@@ -11,7 +12,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class History {
     @Column(name = "created")
-    private Timestamp created;
+    private Timestamp created = new Timestamp(System.currentTimeMillis());
     @Column(name = "last_updated")
     private Timestamp lastUpdated;
 
